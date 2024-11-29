@@ -1,184 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Fushi's Page</title>
- <style>
-   /* General Styles */
-   * {
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
-   }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fushi's Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-   body {
-     font-family: Arial, sans-serif;
-     background-color: #0f0f0f;
-     color: #919191;
-     margin: 0;
-     overflow: hidden; /* Prevent scrolling */
-   }
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background-color: #f0f0f0;
+      color: #1a1a1a;
+      margin: 0;
+      overflow: hidden;
+    }
 
-   .bg-gif {
-     position: fixed;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     z-index: -1;
-     overflow: hidden;
-   }
+    .bg-gif {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      filter: brightness(0.8) contrast(1.2);
+    }
 
-   .bg-img {
-     min-width: 100%;
-     min-height: 100%;
-     width: auto;
-     height: auto;
-     position: absolute;
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-   }
+    .bg-img {
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
-   .container {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     height: 100vh;
-     text-align: center;
-     padding: 2rem;
-   }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 2rem;
+      animation: subtle-float 5s infinite ease-in-out;
+    }
 
-   .section {
-     max-width: 800px;
-     margin-bottom: 2rem;
-   }
+    @keyframes subtle-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
 
-   .section h2 {
-     font-size: 2rem;
-     margin-bottom: 1rem;
-   }
+    h2, p {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
 
-   .section p {
-     font-size: 1.2rem;
-     line-height: 1.5;
-   }
+    h2:hover, p:hover {
+      transform: scale(1.02);
+      color: #555555;
+    }
 
-   .skills-list {
-     display: flex;
-     flex-wrap: wrap;
-     justify-content: center;
-     gap: 1rem;
-     margin-top: 1rem;
-   }
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #333333;
+      margin-bottom: 1rem;
+    }
 
-   .skills-list span {
-     background-color: #e6e6e6;
-     color: #a1a1a1;
-     padding: 0.5rem 1rem;
-     border-radius: 4px;
-   }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #333333;
+      max-width: 800px;
+      margin: 1rem auto;
+    }
 
-   .contact-buttons {
-     display: flex;
-     justify-content: center;
-     gap: 1rem;
-   }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
 
-   .contact-buttons a {
-     display: inline-block;
-     padding: 0.5rem 1rem;
-     background-color: #e6e6e6;
-     color: #a1a1a1;
-     text-decoration: none;
-     border-radius: 4px;
-     transition: background-color 0.3s, color 0.3s;
-     cursor: pointer;
-   }
+    .skills-list a {
+      background-color: transparent;
+      color: #1a1a1a;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
 
-   .contact-buttons a:hover {
-     background-color: #ffffff;
-     color: #000000;
-   }
+    .skills-list a:hover {
+      transform: scale(1.1);
+      color: #555555;
+    }
 
-   /* Copied notification styles */
-   .copied-notification {
-     position: fixed;
-     bottom: 20px;
-     right: 20px;
-     background-color: #4caf50;
-     color: #ffffff;
-     padding: 1rem;
-     border-radius: 8px;
-     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-     opacity: 0;
-     transition: opacity 0.3s ease-in-out;
-     z-index: 10;
-   }
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
 
-   .copied-notification.show {
-     opacity: 1;
-   }
- </style>
+    .contact-buttons a {
+      display: inline-block;
+      color: #1a1a1a;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .contact-buttons a:hover {
+      transform: translateY(-5px);
+      color: #555555;
+    }
+
+    .copied-notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgba(76, 175, 80, 0.9);
+      color: #ffffff;
+      padding: 1rem;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      z-index: 10;
+    }
+
+    .copied-notification.show {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
- <!-- Background GIF -->
- <div class="bg-gif">
-   <img src="images/background.gif" alt="Background GIF" class="bg-img">
- </div>
+  <!-- Background GIF -->
+  <div class="bg-gif">
+    <img src="images/background.gif" alt="Background GIF" class="bg-img">
+  </div>
 
- <!-- Content Container -->
- <div class="container">
-   <div class="section">
-     <h2>Yo! Welcome to... Well here</h2>
-     <p>As a passionate developer, my journey began with learning Python. However, my curiosity and love for learning and soon led me to explore and master a wide array of skills.</p>
-   </div>
+  <!-- Content Container -->
+  <div class="container">
+    <h2>Yo! Welcome to... Well here</h2>
+    <p>As a passionate developer, my journey began with learning Python. My curiosity and love for learning soon led me to explore and master a wide array of skills.</p>
 
-   <div class="section">
     <h2>Key Skills</h2>
     <div class="skills-list">
-      <span>Python</span>
-      <span>Java</span>
-      <span>C++</span>
-      <span>C#</span>
-      <span>SQL</span>
+      <a href="https://www.python.org/" target="_blank">Python</a>
+      <a href="https://www.java.com/" target="_blank">Java</a>
+      <a href="https://isocpp.org/" target="_blank">C++</a>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">JavaScript</a>
+      <a href="https://dotnet.microsoft.com/" target="_blank">.NET</a>
+      <a href="https://learn.microsoft.com/en-us/dotnet/csharp/" target="_blank">C#</a>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">HTML</a>
+      <a href="https://www.w3schools.com/sql/" target="_blank">SQL</a>
+    </div>
+
+    <p>I stand proud of my accomplishments in these areas and the progress I've made. The key lesson I've learned is the importance of staying steadfast in pursuing your goals, no matter the obstacles. With focus and determination, you possess the power to overcome any challenge.</p>
+
+    <div class="contact-buttons">
+      <a href="javascript:void(0)" onclick="copyDiscord()">Discord</a>
+      <a href="https://github.com/Ravylcy/" target="_blank">GitHub</a>
     </div>
   </div>
 
-   <div class="section">
-     <p>I stand proud of my accomplishments in these areas and the progress I have made. The key lesson I've learned is the importance of staying steadfast in pursuing your goals, no matter the obstacles. With focus and determination, you possess the power to overcome any challenge.</p>
-   </div>
+  <!-- Copied Notification -->
+  <div id="copiedNotification" class="copied-notification">
+    Copied Discord Username: xiaokiq
+  </div>
 
-   <div class="contact-buttons">
-     <a href="javascript:void(0)" onclick="copyDiscord()">Discord</a>
-     <a href="https://github.com/Ravylcy/" target="_blank">GitHub</a>
-   </div>
- </div>
-
- <!-- Copied Notification -->
- <div id="copiedNotification" class="copied-notification">
-   Copied Discord Username: xiaokiq
- </div>
-
- <script>
-   function copyDiscord() {
-     // Copy Discord username to clipboard
-     const discordUsername = "xiaokiq";
-     navigator.clipboard.writeText(discordUsername).then(() => {
-       // Show the "Copied" notification
-       const notification = document.getElementById("copiedNotification");
-       notification.textContent = `Copied Discord Username: ${discordUsername}`;
-       notification.classList.add("show");
-       // Hide the notification after 3 seconds
-       setTimeout(() => {
-         notification.classList.remove("show");
-       }, 3000);
-     }).catch(err => {
-       console.error("Failed to copy Discord username: ", err);
-     });
-   }
- </script>
+  <script>
+    function copyDiscord() {
+      const discordUsername = "xiaokiq";
+      navigator.clipboard.writeText(discordUsername).then(() => {
+        const notification = document.getElementById("copiedNotification");
+        notification.textContent = `Copied Discord Username: ${discordUsername}`;
+        notification.classList.add("show");
+        setTimeout(() => {
+          notification.classList.remove("show");
+        }, 3000);
+      }).catch(err => {
+        console.error("Failed to copy Discord username: ", err);
+      });
+    }
+  </script>
 </body>
 </html>
